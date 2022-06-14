@@ -4,7 +4,11 @@ import Logo from "../../assets/logo.svg";
 
 import { Container } from "./styles";
 
-function Header({ openModal }) {
+interface HeaderProps {
+  openModal: () => void;
+}
+
+function Header({ openModal }: HeaderProps) {
   return (
     <Container>
       <header>
@@ -24,4 +28,4 @@ function Header({ openModal }) {
   );
 }
 
-export default Header;
+export { Header };

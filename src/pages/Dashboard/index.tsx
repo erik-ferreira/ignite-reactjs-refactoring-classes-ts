@@ -4,7 +4,7 @@ import api from "../../services/api";
 
 import Food from "../../components/Food";
 import { Header } from "../../components/Header";
-import ModalAddFood from "../../components/ModalAddFood";
+import ModalAddFood, { AddFoodProps } from "../../components/ModalAddFood";
 import ModalEditFood from "../../components/ModalEditFood";
 
 import { FoodProps } from "../../types";
@@ -17,56 +17,56 @@ function Dashboard() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
 
-  // async function handleAddFood(food) {
-  //   try {
-  //     const response = await api.post("/foods", {
-  //       ...food,
-  //       available: true,
-  //     });
+  async function handleAddFood(food: AddFoodProps) {
+    try {
+      const response = await api.post("/foods", {
+        ...food,
+        available: true,
+      });
 
-  //     setFoods((prevState) => [...prevState, response.data]);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+      setFoods((prevState) => [...prevState, response.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  // async function handleUpdateFood(food) {
-  //   try {
-  //     const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
-  //       ...editingFood,
-  //       ...food,
-  //     });
+  async function handleUpdateFood(food: FoodProps) {
+    try {
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
+        ...editingFood,
+        ...food,
+      });
 
-  //     const foodsUpdated = foods.map((f) =>
-  //       f.id !== foodUpdated.data.id ? f : foodUpdated.data
-  //     );
+      const foodsUpdated = foods.map((f) =>
+        f.id !== foodUpdated.data.id ? f : foodUpdated.data
+      );
 
-  //     setFoods(foodsUpdated);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+      setFoods(foodsUpdated);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  // async function handleDeleteFood(id) {
-  //   await api.delete(`/foods/${id}`);
+  async function handleDeleteFood(id: number) {
+    await api.delete(`/foods/${id}`);
 
-  //   const foodsFiltered = foods.filter((food) => food.id !== id);
+    const foodsFiltered = foods.filter((food) => food.id !== id);
 
-  //   setFoods(foodsFiltered);
-  // }
+    setFoods(foodsFiltered);
+  }
 
   function toggleModal() {
     setModalOpen(!modalOpen);
   }
 
-  // function toggleEditModal() {
-  //   setEditModalOpen(!editModalOpen);
-  // }
+  function toggleEditModal() {
+    setEditModalOpen(!editModalOpen);
+  }
 
-  // function handleEditFood(food) {
-  //   setEditingFood(food);
-  //   setEditModalOpen(true);
-  // }
+  function handleEditFood(food: FoodProps) {
+    setEditingFood(food);
+    setEditModalOpen(true);
+  }
 
   async function loadFoods() {
     const response = await api.get("/foods");
@@ -81,7 +81,7 @@ function Dashboard() {
   return (
     <>
       <Header openModal={toggleModal} />
-      {/*
+
       <ModalAddFood
         isOpen={modalOpen}
         setIsOpen={toggleModal}
@@ -104,7 +104,7 @@ function Dashboard() {
               handleEditFood={handleEditFood}
             />
           ))}
-      </FoodsContainer> */}
+      </FoodsContainer>
     </>
   );
 }

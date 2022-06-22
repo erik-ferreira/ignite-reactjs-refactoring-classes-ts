@@ -3,9 +3,14 @@ import { FiEdit3, FiTrash } from "react-icons/fi";
 
 import api from "../../services/api";
 
-import { Container } from "./styles";
-
 import { FoodProps } from "../../types";
+
+import {
+  Container,
+  SectionBody,
+  SectionFooter,
+  AvailabilityContainer,
+} from "./styles";
 
 interface FoodComponentProps {
   food: FoodProps;
@@ -34,14 +39,16 @@ function Food({ food, handleEditFood, handleDelete }: FoodComponentProps) {
       <header>
         <img src={food.image} alt={food.name} />
       </header>
-      <section className="body">
+
+      <SectionBody>
         <h2>{food.name}</h2>
         <p>{food.description}</p>
         <p className="price">
           R$ <b>{food.price}</b>
         </p>
-      </section>
-      <section className="footer">
+      </SectionBody>
+
+      <SectionFooter>
         <div className="icon-container">
           <button
             type="button"
@@ -62,7 +69,7 @@ function Food({ food, handleEditFood, handleDelete }: FoodComponentProps) {
           </button>
         </div>
 
-        <div className="availability-container">
+        <AvailabilityContainer>
           <p>{isAvailable ? "Disponível" : "Indisponível"}</p>
 
           <label htmlFor={`available-switch-${food.id}`} className="switch">
@@ -75,8 +82,8 @@ function Food({ food, handleEditFood, handleDelete }: FoodComponentProps) {
             />
             <span className="slider" />
           </label>
-        </div>
-      </section>
+        </AvailabilityContainer>
+      </SectionFooter>
     </Container>
   );
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FiEdit3, FiTrash } from "react-icons/fi";
 
+import { useMenu } from "../../hooks/useMenu";
+
 import api from "../../services/api";
 
 import { FoodProps } from "../../types";
@@ -14,12 +16,16 @@ import {
 
 interface FoodComponentProps {
   food: FoodProps;
-  handleEditFood: (food: FoodProps) => void;
-  handleDelete: (id: number) => void;
 }
 
-function Food({ food, handleEditFood, handleDelete }: FoodComponentProps) {
+function Food({ food }: FoodComponentProps) {
+  const { deleteFood, editFood } = useMenu();
+
   const [isAvailable, setIsAvailable] = useState(food.available);
+
+  function handleDelete(id: number) {
+    deleteFood(id);
+  }
 
   async function toggleAvailable() {
     await api.put(`/foods/${food.id}`, {
@@ -31,7 +37,7 @@ function Food({ food, handleEditFood, handleDelete }: FoodComponentProps) {
   }
 
   function setEditingFood() {
-    handleEditFood(food);
+    editFood(food);
   }
 
   return (

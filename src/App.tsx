@@ -1,16 +1,18 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Routes from './routes';
+import Routes from "./routes";
 
-import GlobalStyle from './styles/global';
+import { MenuProvider } from "./hooks/useMenu";
+
+import GlobalStyle from "./styles/global";
 
 const App = () => (
-  <>
+  <MenuProvider>
     <GlobalStyle />
     <Router>
       <Routes />
     </Router>
-  </>
+  </MenuProvider>
 );
 
 export default App;

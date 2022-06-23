@@ -1,21 +1,21 @@
 import { FiPlusSquare } from "react-icons/fi";
 
+import { useMenu } from "../../hooks/useMenu";
+
 import Logo from "../../assets/logo.svg";
 
 import { Container } from "./styles";
 
-interface HeaderProps {
-  openModal: () => void;
-}
+function Header() {
+  const { toggleAddFoodModal } = useMenu();
 
-function Header({ openModal }: HeaderProps) {
   return (
     <Container>
       <header>
         <img src={Logo} alt="GoRestaurant" />
         <nav>
           <div>
-            <button type="button" onClick={openModal}>
+            <button type="button" onClick={toggleAddFoodModal}>
               <div className="text">Novo Prato</div>
               <div className="icon">
                 <FiPlusSquare size={24} />

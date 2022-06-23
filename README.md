@@ -10,6 +10,8 @@
 
 Neste desafio temos um projeto que já esta pronto e o principal objetivo é realizar a migração de Javascript para Typescript e de Class Components para Functions Components, seguindo as instruções deixadas no desafio.
 
+Como melhoria nesse desafio resolvi criar um hook `useMenu()` utilizando o [ContextAPI](https://reactjs.org/docs/context.html), dessa forma além de firmar estes conceitos que vi no desafio anterior a este([Desafio Anterior](https://github.com/erik-ferreira/ignite-reactjs-criando-um-hook-de-carrinho-de-compras)) eu pude abstrair as funções para utilizar em todos os components, sem ter que ficar passando elas por propriedade.
+
 ## :thinking: Como rodar o projeto?
 
 1. `yarn` para instalar as dependências
